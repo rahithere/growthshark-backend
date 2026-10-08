@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
 import { Admin } from "../models/admin.models.js";
+import { sign, verify } from 'jsonwebtoken'
 
 const verifyJWT = async (req, res, next) => {
     try {
@@ -13,7 +13,7 @@ const verifyJWT = async (req, res, next) => {
             });
         }
 
-        const decodedToken = jwt.verify(
+        const decodedToken = verify(
             token,
             process.env.ACCESS_TOKEN_SECRET
         );
