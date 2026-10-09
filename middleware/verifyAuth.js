@@ -30,6 +30,7 @@ const verifyJWT = async (req, res, next) => {
                 message: "Admin not found.",
             });
         }
+        // console.log(admin._id, admin.email)
 
         req.admin = admin;
 

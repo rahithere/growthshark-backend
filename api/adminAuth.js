@@ -80,13 +80,15 @@ const loginAdmin = asyncHandler(async (req, res) => {
     res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: "none",
+        path: "/"
     });
 
     res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: "none",
+        path: "/"
     });
 
     return res
