@@ -65,6 +65,7 @@ export default async function handler(req, res) {
           {
             folder: "growthshark/resumes",
             resource_type: "raw",
+            public_id: `${Date.now()}-${req.file.originalname.replace(/\.pdf$/i, "")}.pdf`,
           },
           (error, result) => {
             if (error) {
