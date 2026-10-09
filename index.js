@@ -36,22 +36,21 @@ const app = express();
 
 // Determine allowed origins
 const allowedOrigins = [
-  process.env.FRONTEND_URL, // Production frontend
-  "http://localhost:5173"   // Local development
-].filter(Boolean); // Remove undefined/null
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+].filter(Boolean);
 
-// CORS configuration
 app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(new Error(`CORS blocked origin: ${origin}`));
       }
     },
     credentials: true,
-    methods: ["GET", "POST", "OPTIONS"], // Explicitly allow common methods
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
