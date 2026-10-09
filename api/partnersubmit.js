@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 //import submission service for this route
 import { saveFormSubmission } from "../services/formSubmission.js";
 import { ApiResponse } from "../utils/apiResponse.js";
+import connectDB from "../db/index.js";
 
 // Load environment variables from a .env file
 dotenv.config();
@@ -20,6 +21,8 @@ export default async function partnersubmit(req, res) {
         return res.status(400).json({ message: "Missing required form data" });
     }
 
+
+    await connectDB()
     //update the data to mongodb
     const saved = await saveFormSubmission({
         fullName: answers.name,

@@ -3,6 +3,7 @@
 import dotenv from "dotenv";
 import { saveFormSubmission } from "../services/formSubmission.js";
 import { ApiResponse } from "../utils/apiResponse.js";
+import connectDB from "../db/index.js";
 
 // Load environment variables
 dotenv.config();
@@ -21,6 +22,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
+
+  await connectDB()
   //save data to mongodb
   const saved = await saveFormSubmission({
     fullName: name,

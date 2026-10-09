@@ -3,6 +3,7 @@ import cloudinary from "../utils/cloudinary.js";
 import dotenv from "dotenv";
 import { saveFormSubmission } from "../services/formSubmission.js";
 import { ApiResponse } from "../utils/apiResponse.js";
+import connectDB from "../db/index.js";
 
 // Load environment variables
 dotenv.config();
@@ -79,6 +80,8 @@ export default async function handler(req, res) {
 
       const resumeUrl = result.secure_url;
 
+
+      await connectDB()
       // Save submission using existing logic
       const saved = await saveFormSubmission(
         {
