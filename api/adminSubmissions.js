@@ -1,3 +1,4 @@
+import connectDB from "../db/index.js";
 import { Submission } from "../models/submission.models.js"
 
 const adminSubmissions = async (req, res) => {
@@ -9,6 +10,7 @@ const adminSubmissions = async (req, res) => {
     }
 
     try {
+        await connectDB()
         const submissions = await Submission
             .find()
             .sort({ createdAt: -1 });
