@@ -36,7 +36,11 @@ const blogSchema = new Schema({
         type: String,
         enum: ["draft", "published"],
         default: "draft"
+    },
+    publishedAt: {
+        type: Date,
     }
+
 }, { timestamps: true })
 
 export const Blog = mongoose.model("Blog", blogSchema)
